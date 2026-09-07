@@ -1,16 +1,181 @@
+/* --- RESET & VARIABLES --- */
+:root {
+    --primary-color: #007bff; /* Bright Blue */
+    --accent-color: #fdd835; /* LEGO Yellow */
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --hero-gradient: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+    --card-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
-    text-align: center;
-    margin-top: 50px;
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
+/* --- LAYOUT UTILITY --- */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    background-image: var(--hero-gradient);
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 100px 0;
+    text-align: center;
+    border-bottom: 5px solid var(--accent-color);
 }
 
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.location {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.location .icon {
+    font-size: 1.3rem;
+}
+
+#greetBtn {
+    padding: 12px 30px;
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#greetBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+#greetBtn:active {
+    transform: translateY(1px);
+}
+
+/* --- HOBBIES SECTION --- */
+.hobbies-container {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.hobbies-container h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    color: #444;
+}
+
+.hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.hobby-card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border-top: 5px solid transparent;
+}
+
+.hobby-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Distinct hover borders for each hobby */
+.hobby-card:nth-child(1):hover { border-top-color: #e57373; } /* Red for Reading */
+.hobby-card:nth-child(2):hover { border-top-color: #64b5f6; } /* Blue for Watching */
+.hobby-card:nth-child(3):hover { border-top-color: var(--accent-color); } /* Yellow for LEGO */
+
+.hobby-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.hobby-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.hobby-card p {
+    font-size: 1rem;
+    color: #777;
+}
+
+/* --- FOOTER --- */
+footer {
+    padding: 30px 0;
+    background-color: #333;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* --- SIMPLE ANIMATIONS --- */
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnimation ease 1s forwards;
+}
+
+.slide-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInAnimation ease 0.8s forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+@keyframes fadeInAnimation {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes slideInAnimation {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 600px) {
+    .hero h1 { font-size: 2.2rem; }
+    .hero { padding: 70px 0; }
+    .hobby-card { padding: 30px; }
+}
